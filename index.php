@@ -48,7 +48,7 @@
 
     <h3>Risultati partite:</h3>
     <ul>
-        <?php for($i =0; $i < count($matches); $i++) { ?>
+        <?php for($i = 0; $i < count($matches); $i++) { ?>
             <li>
                 <p>
                     <strong>
@@ -82,7 +82,7 @@ $age = $_GET['age'];
 
 if (empty($name) || empty($email) || empty($age)) {
     echo 'Accesso negato';
-} elseif ( (strlen($name) < 3) || (strpos($email, '@') === false || strpos($email, '.') === false) || (!is_numeric($age)) ) {
+} elseif ( (strlen($name) <= 3) || (strpos($email, '@') === false || strpos($email, '.') === false) || (!is_numeric($age)) ) {
     echo 'Accesso negato';
 } else {
     echo 'Accesso consentito';
@@ -96,11 +96,25 @@ if (empty($name) || empty($email) || empty($age)) {
 
 
 <?php
-$array_random = [];
-for($i = 0; $i < 15; $i++) {
-    $array_random[] = rand(1,100);
+// setup
+$numbers = [];
+$totItems = 15;
+$min = 1;
+$max = 15;
+
+// gen
+while (count($numbers) < $totItems) {
+    // gen random
+    $numero = rand($min, $max);
+
+    // chech unique
+    if(! in_array($numero, $numbers)) {
+        $numbers[] = $numero;
+    }
 }
-var_dump($array_random);
+
+var_dump($numbers);
+
 ?>
 
 
